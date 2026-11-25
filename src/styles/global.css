@@ -527,9 +527,13 @@ button {
 
 /* Filter Tabs */
 .filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
   background: var(--bg-subtle);
   padding: 5px;
   border-radius: var(--radius-full);
@@ -537,11 +541,13 @@ button {
 }
 
 .filter-tab {
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: var(--radius-full);
-  font-size: 0.83rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--ink-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.18s ease;
 }
 

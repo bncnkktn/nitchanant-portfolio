@@ -138,7 +138,7 @@ export function AboutBell({ lang }: AboutBellProps) {
                       My work blends thoughtful e-commerce research, modular Figma design systems, and live production code (Shopify OS 2.0 Liquid, React, TypeScript) - with a soft spot for tiny micro-interactions that make interfaces feel genuinely human.
                     </p>
                     <p>
-                      Outside of UX &amp; frontend, my roots in 3D/VR game development (Global Game Jam 2025 winner) and teaching kids LEGO robotics keep me curious, playful, and always excited to turn complex ideas into something intuitive.
+                      Outside of UX &amp; frontend, my background in 3D/VR game development (Global Game Jam 2025 winner) and teaching kids LEGO robotics on weekends keeps my creative perspective fresh.
                     </p>
                   </>
                 ) : (
@@ -150,7 +150,7 @@ export function AboutBell({ lang }: AboutBellProps) {
                       สไตล์การทำงานของเบลล์คือการเชื่อม UX Research, ระบบดีไซน์บน Figma และโค้ดที่ใช้งานจริง (Shopify OS 2.0 Liquid, React, TypeScript) เข้าด้วยกัน พร้อมใส่ใจดีเทลเล็กๆ ที่ทำให้หน้าเว็บดูมีชีวิตและน่าใช้งาน
                     </p>
                     <p>
-                      นอกจากงานเว็บและ UX/UI เบลล์ยังอินกับงาน 3D/VR (เจ้าของรางวัล Global Game Jam 2025) และสอนหุ่นยนต์ LEGO ให้น้องๆ ในวันหยุด ทำให้ติดนิสัยชอบย่อยเรื่องซับซ้อนให้เข้าใจง่ายและสนุกอยู่เสมอค่ะ
+                      นอกจากงานเว็บและ UX/UI เบลล์ยังมีประสบการณ์ด้านงาน 3D/VR (เจ้าของรางวัล Global Game Jam 2025) และเป็นผู้ช่วยสอนหุ่นยนต์ LEGO ให้น้องๆ ในวันหยุดด้วยค่ะ
                     </p>
                   </>
                 )}
