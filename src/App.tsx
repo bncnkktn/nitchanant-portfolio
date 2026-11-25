@@ -72,9 +72,11 @@ export function App() {
       <footer>
         <div className="container footer-inner">
           <div>
-            © {new Date().getFullYear()} {PROFILE.name[lang]}
+            © {new Date().getFullYear()} {PROFILE.name[lang]} · {PROFILE.location[lang]}
           </div>
-          <div>{PROFILE.location[lang]}</div>
+          <a href="#top" className="footer-top-btn">
+            {lang === 'en' ? 'Back to top ↑' : 'กลับขึ้นด้านบน ↑'}
+          </a>
         </div>
       </footer>
 

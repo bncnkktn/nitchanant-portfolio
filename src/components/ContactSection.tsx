@@ -36,18 +36,28 @@ export function ContactSection({ lang }: ContactSectionProps) {
               {UI_COPY.contact.desc[lang]}
             </p>
 
-            <div style={{ display: 'grid', gap: 8, marginBottom: 24, fontSize: '0.9rem', fontWeight: 600 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Mail size={15} />
-                <span>{PROFILE.email}</span>
+            <div style={{ display: 'grid', gap: 10, marginBottom: 24, fontSize: '0.9rem', fontWeight: 600 }}>
+              <div className="contact-info-row">
+                <span className="contact-info-main">
+                  <Mail size={15} />
+                  <span>{PROFILE.email}</span>
+                </span>
+                <button type="button" className="contact-mini-copy" onClick={handleCopyEmail}>
+                  {copied ? <Check size={12} /> : <Copy size={12} />}
+                  <span>{copied ? UI_COPY.contact.copied[lang] : (lang === 'en' ? 'Copy' : 'คัดลอก')}</span>
+                </button>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Phone size={15} />
-                <span>{PROFILE.phone}</span>
+              <div className="contact-info-row">
+                <span className="contact-info-main">
+                  <Phone size={15} />
+                  <a href={`tel:${PROFILE.phone}`}>{PROFILE.phone}</a>
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <MapPin size={15} />
-                <span>{PROFILE.location[lang]}</span>
+              <div className="contact-info-row">
+                <span className="contact-info-main">
+                  <MapPin size={15} />
+                  <span>{PROFILE.location[lang]}</span>
+                </span>
               </div>
             </div>
 

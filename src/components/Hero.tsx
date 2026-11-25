@@ -163,7 +163,7 @@ export function Hero({ lang, ndaMode, onQuickOpenCase }: HeroProps) {
           <div className="lately-top-bar">
             <div className="lately-status-pill">
               <span className="status-dot" />
-              <span>{lang === 'en' ? 'Open to full-time roles' : 'พร้อมรับโอกาสงานประจำ'}</span>
+              <span>{lang === 'en' ? 'Open to full-time roles' : 'เปิดรับงานประจำ UX/UI · Frontend'}</span>
             </div>
             <div className="lately-loc-meta">
               <MapPin size={12} />
@@ -202,7 +202,7 @@ export function Hero({ lang, ndaMode, onQuickOpenCase }: HeroProps) {
                 </>
               ) : (
                 <>
-                  บัณฑิตไอที สจล. และนักศึกษาฝึกงาน aCommerce ทำงานสาย{' '}
+                  บัณฑิตไอที สจล. และนักศึกษาฝึกงานที่ aCommerce ทำงานสาย{' '}
                   <button
                     type="button"
                     className="intro-inline-pill"
@@ -212,14 +212,14 @@ export function Hero({ lang, ndaMode, onQuickOpenCase }: HeroProps) {
                       {roleTags[roleIdx]}
                     </span>
                   </button>{' '}
-                  ตั้งแต่ UX Research จนถึงพัฒนาหน้าเว็บจริง
+                  ตั้งแต่ทำ UX Research ออกแบบระบบ UI จนถึงขึ้นโค้ดใช้งานจริง
                 </>
               )}
             </p>
 
             <div className="lately-cta-row">
               <a href="#work" className="btn lately-btn-dark">
-                <span>{lang === 'en' ? 'Explore 15 Projects' : 'ชมผลงานทั้งหมด 15 โปรเจกต์'}</span>
+                <span>{lang === 'en' ? 'Explore 15 Projects' : 'ดูผลงานทั้งหมด (15)'}</span>
                 <ArrowRight size={15} />
               </a>
               <a href="#contact" className="btn lately-btn-soft">

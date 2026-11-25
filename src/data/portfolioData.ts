@@ -23,6 +23,18 @@ export interface ProjectLink {
   primary?: boolean;
 }
 
+export interface UxFlowStep {
+  step: string;
+  label: BiText;
+  detail: BiText;
+  accent?: 'peach' | 'butter' | 'lilac' | 'sky' | 'mint';
+}
+
+export interface UxFlowDiagram {
+  title: BiText;
+  steps: UxFlowStep[];
+}
+
 export interface CaseStudy {
   id: string;
   group: ProjectGroup;
@@ -35,6 +47,8 @@ export interface CaseStudy {
   clientNda?: BiText;
   period: string;
   role: BiText;
+  platform?: BiText;
+  team?: BiText;
   summary: BiText;
   summaryNda?: BiText;
   shortSummary?: BiText;
@@ -43,6 +57,7 @@ export interface CaseStudy {
   context: BiText;
   contextNda?: BiText;
   challenge: BiText;
+  uxFlow?: UxFlowDiagram;
   methodology: { en: string[]; th: string[] };
   methodologyNda?: { en: string[]; th: string[] };
   deliverables: { en: string[]; th: string[] };
@@ -131,11 +146,11 @@ export const UI_COPY = {
     { value: '67 Slides', label: { en: 'B2B Analytics Heuristic Audit', th: 'สไลด์รายงาน B2B Analytics Audit' } },
   ],
   work: {
-    kicker: { en: 'Selected Portfolio', th: 'รวมผลงานคัดสรร' },
-    title: { en: 'Case Studies & Shipped Projects', th: 'Case Studies และโปรเจกต์ที่ลงมือทำจริง' },
+    kicker: { en: 'Selected Portfolio', th: 'ผลงานคัดสรร' },
+    title: { en: 'Case Studies & Shipped Projects', th: 'ผลงานและ Case Studies' },
     desc: {
-      en: 'Browse all 15 projects below, or pick a category tab to jump straight to a specific track. Click any card for the full case study & demos.',
-      th: 'เลื่อนดูครบทั้ง 15 โปรเจกต์ได้เลย หรือกดเลือกหมวดหมู่ที่สนใจเพื่อกรองเฉพาะสายงานนั้น ๆ (คลิกที่การ์ดเพื่ออ่านรายละเอียดและดูวิดีโอเดโม)',
+      en: 'Browse all 15 projects below, or pick a category to focus on a specific track. Click any card for the full case study, UX flows & demos.',
+      th: 'เลือกดูครบทั้ง 15 โปรเจกต์ หรือกรองตามหมวดหมู่ที่สนใจ คลิกที่การ์ดเพื่ออ่านขั้นตอนการทำงาน แผนภาพ UX Flow และดูเดโมจริงค่ะ',
     },
     filters: {
       all: { en: 'All Work', th: 'ทั้งหมด' },
@@ -147,19 +162,19 @@ export const UI_COPY = {
     groups: {
       flagship: {
         badge: '01 · FLAGSHIP',
-        title: { en: 'Commercial UX, Strategy & Shopify Builds (aCommerce)', th: 'โปรเจกต์หลักสาย E-Commerce UX & Shopify (aCommerce)' },
+        title: { en: 'Commercial UX, Strategy & Shopify Builds (aCommerce)', th: 'โปรเจกต์หลัก E-Commerce UX & Shopify (aCommerce)' },
       },
       research: {
         badge: '02 · RESEARCH & QA',
-        title: { en: 'UX Research, Heuristic Audits & Staging QA', th: 'งานสาย UX Research, Heuristic Audit & Staging QA' },
+        title: { en: 'UX Research, Heuristic Audits & Staging QA', th: 'UX Research, Heuristic Audit & Staging QA' },
       },
       apps: {
         badge: '03 · WEB & APPS',
-        title: { en: 'Web Applications, Product Design & Cloud Systems', th: 'เว็บแอปพลิเคชัน, Product Design และระบบคลาวด์' },
+        title: { en: 'Web Applications, Product Design & Cloud Systems', th: 'เว็บแอป, Product Design และระบบคลาวด์' },
       },
       creative3d: {
         badge: '04 · 3D, VR & GAMES',
-        title: { en: '3D Modeling, VR Experiences & Game Development', th: 'ผลงาน 3D, เกม VR และ Interactive Media' },
+        title: { en: '3D Modeling, VR Experiences & Game Development', th: 'งาน 3D, เกม VR และ Interactive Media' },
       },
     },
     readCase: { en: 'Read Case Study', th: 'อ่านรายละเอียด' },
@@ -167,34 +182,37 @@ export const UI_COPY = {
   modal: {
     role: { en: 'Role', th: 'บทบาท' },
     period: { en: 'Timeline', th: 'ช่วงเวลา' },
-    client: { en: 'Context / Client', th: 'องค์กร / ลูกค้า' },
-    context: { en: 'Background & Context', th: 'บริบทและที่มา' },
-    challenge: { en: 'Core Challenge', th: 'โจทย์และปัญหาหลัก' },
-    methodology: { en: 'Research & Process', th: 'กระบวนการและวิธีการทำงาน' },
-    deliverables: { en: 'Key Deliverables', th: 'ผลลัพธ์และชิ้นงานหลัก' },
-    impact: { en: 'Impact & Outcomes', th: 'ผลลัพธ์และคุณค่าที่เกิดขึ้น' },
+    client: { en: 'Organization', th: 'องค์กร / ลูกค้า' },
+    platform: { en: 'Platform', th: 'แพลตฟอร์ม' },
+    team: { en: 'Collaborators', th: 'ทำงานร่วมกับ' },
+    uxFlow: { en: 'UX Flow & Process', th: 'แผนภาพ UX Flow และลำดับการทำงาน' },
+    context: { en: 'Background & Context', th: 'ที่มาและบริบท' },
+    challenge: { en: 'Core Challenge', th: 'โจทย์และความท้าทาย' },
+    methodology: { en: 'Research & Process', th: 'ขั้นตอนการทำงาน' },
+    deliverables: { en: 'Key Deliverables', th: 'ชิ้นงานที่ส่งมอบ' },
+    impact: { en: 'Impact & Outcomes', th: 'ผลลัพธ์ที่ได้' },
   },
   skills: {
     kicker: { en: 'What I Work With', th: 'ทักษะและเครื่องมือ' },
-    title: { en: 'Skills & Toolkit', th: 'ทักษะและเครื่องมือที่ใช้ทำงานจริง' },
+    title: { en: 'Skills & Toolkit', th: 'ทักษะและเครื่องมือที่ใช้' },
     desc: {
       en: 'Core skills across UX research, UI design systems, frontend & Shopify Liquid development, staging QA, and 3D/VR media.',
-      th: 'ทักษะและเครื่องมือที่ใช้ทำงานจริงตั้งแต่ UX Research, ออกแบบระบบ UI, พัฒนาเว็บ Frontend & Shopify Liquid, การทดสอบ QA ไปจนถึงงาน 3D และ VR',
+      th: 'ครอบคลุมตั้งแต่การทำ UX Research, ออกแบบระบบ UI บน Figma, พัฒนาเว็บ Frontend & Shopify Liquid, การทดสอบ Staging QA ไปจนถึงงาน 3D และ VR',
     },
-    toolsHeading: { en: 'Tools, Platforms & Software Stack', th: 'ซอฟต์แวร์ แพลตฟอร์ม และเครื่องมือทั้งหมด' },
+    toolsHeading: { en: 'Tools, Platforms & Software Stack', th: 'เครื่องมือและแพลตฟอร์มที่ใช้งาน' },
   },
   experience: {
-    kicker: { en: 'Background', th: 'ประวัติการทำงานและการศึกษา' },
-    title: { en: 'Experience & Education', th: 'ประสบการณ์และวุฒิการศึกษา' },
+    kicker: { en: 'Background', th: 'ประวัติและประสบการณ์' },
+    title: { en: 'Experience & Education', th: 'ประสบการณ์และการศึกษา' },
     workHeading: { en: 'Work Experience', th: 'ประสบการณ์ทำงาน' },
-    eduHeading: { en: 'Education & Academic Highlights', th: 'การศึกษาและผลการเรียนเด่น' },
+    eduHeading: { en: 'Education & Academic Highlights', th: 'การศึกษาและผลงานเด่น' },
   },
   contact: {
-    kicker: { en: 'Get In Touch', th: 'ช่องทางติดต่อ' },
+    kicker: { en: 'Get In Touch', th: 'ติดต่อ' },
     title: { en: "Let's work together.", th: 'สนใจร่วมงานหรือพูดคุยเพิ่มเติม' },
     desc: {
-      en: 'Open to full-time UX/UI Designer, Junior Product Designer, and Frontend Developer roles. Download a role-tailored resume or copy my email below.',
-      th: 'เปิดรับโอกาสงานประจำตำแหน่ง UX/UI Designer, Junior Product Designer และ Frontend Developer สามารถดาวน์โหลดเรซูเม่แยกตามสายงานหรือคัดลอกอีเมลได้เลยค่ะ',
+      en: 'Open to full-time UX/UI Designer, Junior Product Designer, Frontend Developer, and QA roles. Download a tailored resume or copy my email below.',
+      th: 'เปิดรับงานประจำสาย UX/UI Designer, Junior Product Designer, Frontend และ QA ค่ะ สามารถดาวน์โหลดเรซูเม่แยกตามสายงาน หรือคัดลอกอีเมลด้านล่างได้เลย',
     },
     copyEmail: { en: 'Copy Email', th: 'คัดลอกอีเมล' },
     copied: { en: 'Copied!', th: 'คัดลอกแล้ว!' },
@@ -218,15 +236,46 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'aCommerce (Professional Services)', th: 'aCommerce (ทีม Professional Services)' },
     period: 'Aug – Dec 2026',
     role: { en: 'UX/UI Designer & Shopify Theme Builder', th: 'UX/UI Designer & Shopify Theme Builder' },
+    platform: { en: 'Responsive Web (Shopify OS 2.0)', th: 'Responsive Web (Shopify OS 2.0)' },
+    team: { en: 'Senior UX, PM, Frontend & Shopify Dev', th: 'Senior UX, PM, ทีม Dev Shopify' },
     summary: {
       en: 'Built from 19-site benchmarking & 4 behavioral personas (65% market share) to a signed-off Theme 2A 11-section architecture (7 Core + 4 Configurable), Youthlabo Beauty POC, and 4 production Shopify OS 2.0 Liquid sections with {% schema %} & Theme-Native CSS.',
-      th: 'รับผิดชอบตั้งแต่ Benchmark 19 เว็บ สังเคราะห์ 4 Persona (65% ตลาด) ออกแบบระบบ 11 Sections (7 Core + 4 Configurable) และ Beauty POC (Youthlabo) ไปจนถึงเขียนโค้ด Custom Liquid ใช้งานจริง 4 Component บน Shopify OS 2.0',
+      th: 'ทำครบทั้งลูป ตั้งแต่เก็บข้อมูล Benchmark 19 เว็บ สังเคราะห์ 4 กลุ่มผู้ซื้อ (65% ของตลาด) วางโครงธีมมาตรฐาน 11 โมดูล (7 Core + 4 Configurable) และทำ Beauty POC (Youthlabo) จนถึงขึ้นโค้ด Shopify Liquid OS 2.0 ใช้งานจริง 4 ส่วน',
     },
     shortSummary: {
       en: '19-site benchmark, Theme 2A 11-section system, Beauty POC, and 4 production Shopify Liquid sections.',
-      th: 'Benchmark 19 เว็บ ออกแบบธีมมาตรฐาน 11 โมดูล พร้อมขึ้นโค้ด Shopify Liquid ใช้งานจริง 4 ส่วน',
+      th: 'Benchmark 19 เว็บ ออกแบบธีมมาตรฐาน 11 โมดูล และขึ้นโค้ด Shopify Liquid ใช้งานจริง 4 ส่วน',
     },
     tags: ['Shopify Liquid', '{% schema %} OS 2.0', '19-Site Benchmark', 'Theme-Native CSS', 'AJAX Cart', 'Youthlabo POC'],
+    uxFlow: {
+      title: { en: 'End-to-End Theme Architecture & Build Flow', th: 'ลำดับการทำงานตั้งแต่ Research ถึงโค้ดจริง' },
+      steps: [
+        {
+          step: '01',
+          label: { en: '19-Site Benchmark', th: 'วิเคราะห์ 19 เว็บ' },
+          detail: { en: 'Mega Campaign, D2C & Multi-Brand audit', th: 'เทียบ 3 กลุ่มธุรกิจ แยก Core vs. Config' },
+          accent: 'peach',
+        },
+        {
+          step: '02',
+          label: { en: '4 Personas (65%)', th: '4 กลุ่มผู้ซื้อ (65%)' },
+          detail: { en: 'Journey map & E-E-A-T trust triggers', th: 'วาง Journey 5 ขั้นตอนและจุดสร้างความเชื่อมั่น' },
+          accent: 'butter',
+        },
+        {
+          step: '03',
+          label: { en: '11-Section Theme 2A', th: 'ออกแบบธีม 11 โมดูล' },
+          detail: { en: '7 Core + 4 Configurable & Beauty POC', th: 'ผ่าน Sign-off พร้อมทำหน้าจริงกลุ่มสกินแคร์' },
+          accent: 'lilac',
+        },
+        {
+          step: '04',
+          label: { en: 'OS 2.0 Liquid Code', th: 'ขึ้นโค้ด Liquid จริง' },
+          detail: { en: '4 sections with {% schema %} & Native CSS', th: '4 ส่วนหลัก ลากปรับได้ ไม่ฮาร์ดโค้ดสี/ฟอนต์' },
+          accent: 'mint',
+        },
+      ],
+    },
     context: {
       en: 'aCommerce needed a standardized, reusable Shopify Online Store 2.0 default theme blueprint - and production-ready custom sections - so Professional Services teams could launch high-converting client stores rapidly with zero tech debt.',
       th: 'ทีม Professional Services ต้องการทั้งพิมพ์เขียวธีมแม่แบบมาตรฐานบน Shopify OS 2.0 และ Custom Component ที่ขึ้นโค้ดจริงพร้อมใช้งาน เพื่อเปิดร้านให้ลูกค้าแบรนด์ต่าง ๆ ได้อย่างรวดเร็วโดยไม่สร้าง Tech Debt',
@@ -419,15 +468,46 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientNda: { en: 'Regional Watch & Lifestyle Distributor', th: 'ตัวแทนจำหน่ายนาฬิกาและไลฟ์สไตล์ระดับภูมิภาค' },
     period: 'Aug – Dec 2026',
     role: { en: 'UX/UI Designer & Shopify POC', th: 'UX/UI Designer & Shopify Technical POC' },
+    platform: { en: 'Responsive Web (Shopify + Pre-sales Deck)', th: 'เว็บไซต์ Responsive (Shopify + สไลด์ขายงาน)' },
+    team: { en: 'Pre-sales Strategists, Senior UX/UI Lead', th: 'ทีมกลยุทธ์ Pre-sales และ Senior UX/UI Lead' },
     summary: {
       en: 'Transitioned a corporate informational website into a transactional D2C funnel backed by E-E-A-T, dual Brand Wall concepts, Tech Product Showcase pitch decks, and hands-on Shopify Theme Editor POC validation.',
-      th: 'ปรับโครงสร้างเว็บไซต์ให้ข้อมูลบริษัทสู่ Transactional D2C Funnel ผสานหลัก E-E-A-T, Brand Wall 2 ทางเลือก, สไลด์ขายงานสไตล์ Tech Showcase และการทำ Technical POC บน Shopify จริง',
+      th: 'เปลี่ยนเว็บให้ข้อมูลบริษัทให้กลายเป็นเว็บขายตรง D2C ที่ลูกค้ามั่นใจเรื่องของแท้ ด้วยโครงสร้าง E-E-A-T, Brand Wall 2 ทางเลือก, สไลด์ขายงานสไตล์ Tech Showcase และการทดลองตั้งค่าจริงบน Shopify เพื่อกันเสนอเกินข้อจำกัด',
     },
     shortSummary: {
       en: 'D2C e-commerce strategy, pre-sales pitch deck, and Shopify Theme Editor technical POC.',
-      th: 'วางกลยุทธ์เว็บ D2C ออกแบบ Brand Wall สไลด์ขายงาน และทำ Technical POC บน Shopify',
+      th: 'วางโครงเว็บ D2C ออกแบบ Brand Wall สไลด์ขายงาน และทดลองทำ Technical POC บน Shopify',
     },
     tags: ['D2C Funnel', 'E-E-A-T', 'Pre-sales Deck', 'Shopify Technical POC', 'Figma Auto-Layout'],
+    uxFlow: {
+      title: { en: 'From Corporate Site to Validated D2C Pitch', th: 'ขั้นตอนเปลี่ยนเว็บข้อมูลบริษัทสู่ข้อเสนอ D2C ที่สร้างได้จริง' },
+      steps: [
+        {
+          step: '01',
+          label: { en: 'Funnel & E-E-A-T', th: 'วางโครง Funnel & E-E-A-T' },
+          detail: { en: 'Landing → PLP → PDP → Checkout trust flow', th: 'วางเส้นทางซื้อตรงพร้อมจุดยืนยันของแท้' },
+          accent: 'peach',
+        },
+        {
+          step: '02',
+          label: { en: 'Dual Brand Wall', th: 'ออกแบบ Brand Wall 2 แบบ' },
+          detail: { en: 'Priority-led vs. A–Z for executive pitch', th: 'ทำตัวเลือกเรียงแบรนด์เพื่อเปิดบทสนทนากับผู้บริหาร' },
+          accent: 'butter',
+        },
+        {
+          step: '03',
+          label: { en: 'Shopify Live POC', th: 'ทดสอบ POC หลังบ้าน Shopify' },
+          detail: { en: 'Caught 8-col grid & hover limits early', th: 'เช็กข้อจำกัด 8 คอลัมน์และ Hover ก่อนส่งข้อเสนอ' },
+          accent: 'sky',
+        },
+        {
+          step: '04',
+          label: { en: 'The Selling Page', th: 'สไลด์ขายงานพร้อม Figma' },
+          detail: { en: 'Device mockups + build-ready Auto-Layout', th: 'สไลด์ Tech Showcase คู่ไฟล์ Figma ที่ทำได้จริง' },
+          accent: 'mint',
+        },
+      ],
+    },
     context: {
       en: 'A regional watch and lifestyle brand distributor operated an informational site without direct online checkout, missing direct revenue and first-party customer data while facing counterfeit skepticism.',
       th: 'ตัวแทนจำหน่ายแบรนด์นาฬิกาและไลฟ์สไตล์ระดับภูมิภาคมีเพียงเว็บไซต์ให้ข้อมูลบริษัท ยังไม่มีระบบซื้อขายตรง ทำให้เสียโอกาสสร้างยอดขายและเก็บ First-Party Data รวมถึงลูกค้ามีความกังวลเรื่องสินค้าลอกเลียนแบบ',
@@ -497,15 +577,46 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'aCommerce Professional Services Team', th: 'ทีม Professional Services, aCommerce' },
     period: 'Aug – Dec 2026',
     role: { en: 'Co-Lead Designer & Researcher', th: 'Co-Lead Designer & Researcher' },
+    platform: { en: 'Google Workspace (Avatar & Meet BG)', th: 'Google Workspace (Avatar & พื้นหลังประชุม)' },
+    team: { en: 'Co-Lead Intern, PS Team (21 Members)', th: 'คู่หูฝึกงาน และสมาชิกทีม PS 21 คน' },
     summary: {
       en: 'Co-led an internal side venture creating a CI-aligned avatar & virtual background system stress-tested at 32–96px, driving 76.2% organic team adoption without mandates via a White-Glove Concierge experiment.',
-      th: 'ร่วมกับคู่หูฝึกงานออกแบบระบบ Avatar และ Virtual Background ตาม CI ของบริษัท ทดสอบความคมชัดที่ 32–96px และใช้ Lean Concierge Experiment ดันอัตราการใช้งานจริงถึง 76.2% โดยไม่บังคับ',
+      th: 'ร่วมออกแบบระบบ Avatar และพื้นหลังประชุมตาม CI ของทีม ทดสอบความคมชัดที่ขนาดจริง 32–96px แล้วใช้แนวคิด Lean Concierge ลดขั้นตอนยุ่งยากจนทีมหันมาใช้จริงถึง 76.2% โดยไม่ต้องบังคับ',
     },
     shortSummary: {
       en: 'CI-aligned avatar & background system achieving 76.2% organic team adoption via Lean experimentation.',
-      th: 'ออกแบบระบบ Avatar และพื้นหลังตาม CI ทีม ดันยอดใช้งานจริง 76.2% ด้วยแนวคิด Lean Experiment',
+      th: 'ออกแบบระบบ Avatar และพื้นหลังทีมตาม CI ดันยอดใช้จริง 76.2% ด้วยแนวคิด Lean',
     },
     tags: ['Brand Identity', 'Stress Testing', 'Lean Startup', 'Friction Mapping', 'Concierge MVP'],
+    uxFlow: {
+      title: { en: 'Lean Adoption Experiment Loop', th: 'ลูปการทดลองผลักดันยอดใช้งานจริง 76.2%' },
+      steps: [
+        {
+          step: '01',
+          label: { en: 'CI Template + Safe Zone', th: 'สร้างแม่แบบ + Safe Zone' },
+          detail: { en: '1000×1000px Avatar & 16:9 Meet BG', th: 'ออกแบบกรอบภาพ 1:1 และพื้นหลัง 16:9 ตาม CI' },
+          accent: 'peach',
+        },
+        {
+          step: '02',
+          label: { en: '32–96px Stress Test', th: 'ทดสอบขนาดจริง 32-96px' },
+          detail: { en: '8-combination legibility matrix', th: 'เทียบความคมชัด 8 คู่สี ตัดรายละเอียดที่รกออก' },
+          accent: 'butter',
+        },
+        {
+          step: '03',
+          label: { en: 'Friction Mapping', th: 'หาจุดที่คนไม่อยากเปลี่ยน' },
+          detail: { en: 'Found photo cutout & resize friction', th: 'พบว่าคนในทีมติดเรื่องไม่มีเวลาไดคัทและตั้งค่าเอง' },
+          accent: 'lilac',
+        },
+        {
+          step: '04',
+          label: { en: 'Concierge Rollout', th: 'ทำให้เสร็จพร้อมอัปโหลด' },
+          detail: { en: '76.2% adoption (16/21 teammates)', th: 'ส่งรูปพร้อมใช้ตรงถึงมือ ยอดใช้จริงพุ่ง 76.2%' },
+          accent: 'mint',
+        },
+      ],
+    },
     context: {
       en: 'During client calls and Google Workspace collaboration, team profiles lacked visual cohesion. As part of the Intern Side Venture Challenge, we set out to unify team identity organically.',
       th: 'ในการประชุมกับลูกค้าและใช้งาน Google Workspace รูปโปรไฟล์และพื้นหลังของทีมยังขาดความเป็นหนึ่งเดียว จึงริเริ่มโปรเจกต์ Internal Startup เพื่อสร้างภาพลักษณ์ทีมให้เป็นมืออาชีพโดยไม่ใช้วิธีบังคับ',
@@ -569,13 +680,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientNda: { en: 'Enterprise Data Intelligence Platform', th: 'แพลตฟอร์ม Data Intelligence ระดับองค์กร' },
     period: 'Aug – Dec 2026',
     role: { en: 'UX Auditor', th: 'UX Auditor' },
+    platform: { en: 'Desktop B2B SaaS Web App', th: 'เว็บแอป B2B SaaS (Desktop)' },
+    team: { en: 'Product Stakeholders, Senior UX Lead', th: 'ทีม Product และ Senior UX Lead' },
     summary: {
       en: 'Conducted a 67-slide Fresh Observation Audit and UI deconstruction across 5 enterprise data modules with High/Medium/Low severity rankings.',
-      th: 'ทำ Fresh Observation Audit และถอดโครงสร้าง UI แพลตฟอร์ม Data Intelligence ครอบคลุม 5 โมดูล รวม 67 สไลด์ พร้อมจัดลำดับความรุนแรง High/Medium/Low',
+      th: 'ตรวจ UX ในมุมมองผู้ใช้งานครั้งแรกและแยกชิ้นส่วนหน้าจอของแพลตฟอร์มวิเคราะห์ข้อมูล B2B ครบ 5 โมดูล รวม 67 สไลด์ พร้อมจัดลำดับความเร่งด่วน High/Medium/Low ให้ทีมหยิบไปแก้ได้ทันที',
     },
     shortSummary: {
       en: '67-slide heuristic audit and UI breakdown across 5 enterprise B2B analytics modules.',
-      th: 'ตรวจสอบ UX และถอดโครงสร้าง UI แพลตฟอร์มข้อมูล B2B 5 โมดูล รวม 67 สไลด์',
+      th: 'ตรวจ UX และแยกโครงสร้าง UI แพลตฟอร์มข้อมูล B2B 5 โมดูล รวม 67 สไลด์',
     },
     tags: ['B2B SaaS', 'Data Visualization', 'UI Deconstruction', 'Severity Matrix'],
     context: {
@@ -625,13 +738,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientNda: { en: '3 Regional Premium Retail Brands', th: 'แบรนด์รีเทลพรีเมียมระดับภูมิภาค 3 แบรนด์' },
     period: 'Aug – Dec 2026',
     role: { en: 'UX Auditor & Staging QA', th: 'UX Auditor & Staging QA' },
+    platform: { en: 'Responsive Storefront + Shopify Admin', th: 'หน้าร้าน Responsive + ระบบหลังบ้าน Shopify' },
+    team: { en: 'Project Managers, Solution Consultants, QA', th: 'ทีม PM, Solution Consultants และทีมส่งมอบระบบ' },
     summary: {
       en: 'Audited end-to-end e-commerce journeys across 3 regional premium brands and verified 11 Shopify training modules (59 sub-steps) on live Staging including Matrixify workflows.',
-      th: 'วิเคราะห์ User Journey ครบวงจรให้แบรนด์พรีเมียม 3 ราย และตรวจสอบคู่มือ Shopify บนระบบ Staging จริง 11 หัวข้อ (59 สเต็ปย่อย) รวมถึงขั้นตอน Matrixify',
+      th: 'ไล่ตรวจประสบการณ์ซื้อของตั้งแต่หน้าแรกจนถึงตะกร้าให้แบรนด์พรีเมียม 3 ราย และลองกดทดสอบคู่มือ Shopify บนระบบ Staging จริงครบ 11 หัวข้อ (59 ขั้นตอนย่อย) รวมขั้นตอน Matrixify',
     },
     shortSummary: {
       en: 'E-commerce journey audits for 3 brands plus 59-step Shopify Staging QA & Matrixify verification.',
-      th: 'วิเคราะห์ User Journey 3 แบรนด์พรีเมียม และทดสอบ Staging QA ระบบ Shopify 59 ขั้นตอน',
+      th: 'ตรวจ User Journey 3 แบรนด์พรีเมียม และทดสอบ Staging QA ระบบ Shopify 59 ขั้นตอน',
     },
     tags: ['Journey Audit', 'Shopify Staging QA', 'Matrixify', 'Feedback Tracker'],
     context: {
@@ -693,9 +808,11 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientNda: { en: 'Global Healthcare Brand', th: 'แบรนด์ผลิตภัณฑ์สุขภาพระดับโลก' },
     period: 'Aug – Dec 2026',
     role: { en: 'Usability Test Moderator', th: 'ผู้ดำเนินการทดสอบผู้ใช้' },
+    platform: { en: 'Mobile Web Prototype (Figma)', th: 'ต้นแบบมือถือ Interactive (Figma)' },
+    team: { en: 'Senior UX Designer, Product Owner', th: 'Senior UX Designer และ Product Owner' },
     summary: {
       en: 'Moderated a 1.5-hour unguided Think-Aloud mobile prototype session on Figma and synthesized insights across Comprehension, Missing Information, and Usability Friction.',
-      th: 'ดำเนินการทดสอบผู้ใช้ 1.5 ชม. บน Figma Mobile Prototype ด้วย Think-Aloud Protocol แบบไม่ชี้นำ และสังเคราะห์ผลเป็น 3 มิติภายใต้ข้อจำกัดของปลั๊กอิน',
+      th: 'นำเซสชันทดสอบผู้ใช้ 1.5 ชม. บน Figma Mobile Prototype ด้วยวิธี Think-Aloud แบบไม่ชี้นำ แล้วสรุปข้อค้นพบออกเป็น 3 มิติให้ปรับแก้ได้จริงภายใต้ข้อจำกัดของปลั๊กอิน',
     },
     shortSummary: {
       en: '1.5-hour Think-Aloud mobile prototype test synthesizing comprehension & usability insights.',
@@ -742,13 +859,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'aCommerce Design Review', th: 'ทีมออกแบบ aCommerce' },
     period: 'Aug – Dec 2026',
     role: { en: 'Red Team Reviewer', th: 'Red Team Reviewer' },
+    platform: { en: 'E-Commerce Storefront UI Review', th: 'รีวิว UI หน้าเว็บ E-Commerce' },
+    team: { en: 'aCommerce UX/UI Design Team', th: 'ทีมออกแบบ UX/UI ของ aCommerce' },
     summary: {
       en: 'Applied the Steelman critique framework to evaluate subscription banner mental models, classifying 3–7 core findings by evidence tier and confidence score (1–10).',
-      th: 'ทำหน้าที่ Red Team Reviewer ตรวจสอบ Subscription Banner โดยใช้หลัก Steelman ตัดอคติส่วนตัว พร้อมจำแนกปัญหาตามระดับหลักฐานและให้คะแนนความเชื่อมั่น 1–10',
+      th: 'รับหน้าที่ Red Team Reviewer ตรวจแบนเนอร์ Subscription ด้วยหลัก Steelman เพื่อลดอคติส่วนตัว พร้อมแยกข้อสังเกตตามน้ำหนักหลักฐานและคะแนนความเชื่อมั่น 1–10',
     },
     shortSummary: {
       en: 'Steelman UX critique evaluating subscription banner mental models with evidence-tiered scoring.',
-      th: 'ตรวจประเมิน Subscription Banner ด้วยหลัก Steelman แยกข้อค้นพบตามระดับหลักฐาน',
+      th: 'ตรวจประเมินแบนเนอร์ Subscription ด้วยหลัก Steelman แยกข้อค้นพบตามระดับหลักฐาน',
     },
     tags: ['Red Team Review', 'Steelman Method', 'Mental Models', 'Evidence Classification'],
     context: {
@@ -793,15 +912,46 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'Internal Business Digitization Project', th: 'โปรเจกต์ปรับระบบธุรกิจสู่ดิจิทัล' },
     period: '2025 – 2026',
     role: { en: 'System Designer & App Builder', th: 'System Designer & App Builder' },
+    platform: { en: 'Mobile Web App (Google AppSheet)', th: 'Mobile App (Google AppSheet & Sheets)' },
+    team: { en: 'Solo Builder & Business Stakeholders', th: 'พัฒนาเดี่ยว ร่วมเก็บโจทย์กับเจ้าของกิจการ' },
     summary: {
       en: 'Replaced handwritten factory & retail recordkeeping with relational Google AppSheet apps featuring automated waste reconciliation, executive dashboards, camera barcode POS, and auto stock deduction.',
-      th: 'เปลี่ยนการจดบันทึกด้วยมือสู่ระบบดิจิทัลบน Google AppSheet เชื่อมฐานข้อมูลสินค้า-คู่ค้า-การขาย พร้อมคำนวณสัดส่วนของเสีย สแกนบาร์โค้ดผ่านกล้อง และตัดสต็อกอัตโนมัติ',
+      th: 'เปลี่ยนการจดสต็อกและยอดขายลงกระดาษมาเป็นระบบแอปบน Google AppSheet ที่เชื่อมข้อมูลสินค้า คู่ค้า และตะกร้าขายเข้าด้วยกัน พร้อมคำนวณสัดส่วนของเสีย สแกนบาร์โค้ดผ่านกล้อง และตัดสต็อกอัตโนมัติ',
     },
     shortSummary: {
       en: 'AppSheet POS, camera barcode scanning, auto stock deduction, and factory waste dashboards.',
-      th: 'ระบบ POS สแกนบาร์โค้ด ตัดสต็อกอัตโนมัติ และแดชบอร์ดคุมของเสียโรงงานบน AppSheet',
+      th: 'แอป POS สแกนบาร์โค้ด ตัดสต็อกอัตโนมัติ และแดชบอร์ดคุมของเสียบน AppSheet',
     },
     tags: ['Google AppSheet', 'Relational Modeling', 'Virtual Columns', 'Barcode POS', 'Executive Dashboard'],
+    uxFlow: {
+      title: { en: 'End-to-End Inventory, Waste & POS Flow', th: 'เส้นทางข้อมูลสต็อก คุมของเสีย และขายหน้าร้าน' },
+      steps: [
+        {
+          step: '01',
+          label: { en: 'Stock In', th: 'รับวัตถุดิบเข้า' },
+          detail: { en: 'Log supplier batches into relational sheet', th: 'บันทึกรับเข้าเชื่อมข้อมูลสินค้าและคู่ค้า' },
+          accent: 'sky',
+        },
+        {
+          step: '02',
+          label: { en: 'Production & Waste', th: 'ผลิต & ตัดแต่งของเสีย' },
+          detail: { en: 'Virtual Columns auto-calc waste ratio %', th: 'สูตร Virtual Columns คำนวณสัดส่วนของเสียอัตโนมัติ' },
+          accent: 'butter',
+        },
+        {
+          step: '03',
+          label: { en: 'Barcode Mobile POS', th: 'สแกนขาย POS มือถือ' },
+          detail: { en: 'Camera scan, cash/QR & instant stock deduct', th: 'สแกนบาร์โค้ด คิดเงินสด/QR และตัดสต็อกทันที' },
+          accent: 'peach',
+        },
+        {
+          step: '04',
+          label: { en: 'Live Dashboard', th: 'แดชบอร์ดผู้บริหาร' },
+          detail: { en: 'Real-time sales, waste & stock overview', th: 'ดูกราฟยอดขายและของเสียเทียบรายวันได้ทันที' },
+          accent: 'mint',
+        },
+      ],
+    },
     context: {
       en: 'Manual paper logs for inventory, production waste, and point-of-sale transactions caused calculation errors and zero real-time visibility for management.',
       th: 'การจดสต็อก ของเสียจากการผลิต และยอดขายลงกระดาษทำให้เกิดความคลาดเคลื่อนและผู้บริหารไม่สามารถดูภาพรวมแบบเรียลไทม์ได้',
@@ -865,18 +1015,49 @@ export const CASE_STUDIES: CaseStudy[] = [
       en: 'LifeBalance - Responsive Health Tracker Web App',
       th: 'LifeBalance - เว็บแอปติดตามสุขภาพและแดชบอร์ดข้อมูล',
     },
-    client: { en: 'KMITL UI/UX & Web Design Project', th: 'โปรเจกต์ UI/UX และพัฒนาเว็บ (สจล.)' },
+    client: { en: 'KMITL UI/UX & Web Design Project', th: 'โปรเจกต์วิชา UI/UX และ Web Design (สจล.)' },
     period: '2025',
     role: { en: 'UI/UX Designer & Frontend Developer', th: 'UI/UX Designer & Frontend Developer' },
+    platform: { en: 'Responsive Web App (Live on Netlify)', th: 'Responsive Web App (เว็บจริงบน Netlify)' },
+    team: { en: 'Solo End-to-End (Design + Code)', th: 'ออกแบบและเขียนโค้ดครบวงจร (เดี่ยว)' },
     summary: {
       en: 'Designed, prototyped, and deployed a live wellness dashboard (Netlify) tracking steps, water, calories, and sleep - iterated via usability testing into a unified Tab Component logging modal.',
-      th: 'ออกแบบ ทำ Figma Prototype และเขียนโค้ดขึ้นเว็บจริงบน Netlify สำหรับติดตามก้าวเดิน น้ำ แคลอรี และการนอน พร้อมปรับปรุงจากผล Usability Testing สู่ระบบ Tab Component ที่ลดภาระการกรอกข้อมูล',
+      th: 'ออกแบบ ทำ Figma Prototype และเขียนโค้ดขึ้นเว็บจริงบน Netlify สำหรับติดตามก้าวเดิน น้ำ แคลอรี และการนอน พร้อมนำผล Usability Testing มาปรับหน้าบันทึกข้อมูลให้รวมอยู่ใน Tab เดียวเพื่อลดขั้นตอนการคลิก',
     },
     shortSummary: {
       en: 'Live wellness dashboard (Netlify) tracking steps, water, calories & sleep with tested Tab UX.',
-      th: 'เว็บแอปแดชบอร์ดสุขภาพ (Netlify) ติดตามก้าวเดิน น้ำ แคลอรี และการนอน พร้อม Figma Prototype',
+      th: 'เว็บแอปแดชบอร์ดสุขภาพ (Netlify) พร้อม Figma Prototype ที่ปรับ UX จากการทดสอบผู้ใช้จริง',
     },
     tags: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap 5', 'Chart.js', 'Figma', 'Netlify'],
+    uxFlow: {
+      title: { en: 'Usability-Driven Design Pivot Flow', th: 'การปรับ UX จากผลทดสอบผู้ใช้จริง (Design Pivot)' },
+      steps: [
+        {
+          step: '01',
+          label: { en: 'V1 Prototype Test', th: 'ทดสอบต้นแบบ V1' },
+          detail: { en: 'Tested 4 separate category popups', th: 'ลองให้ผู้ใช้กรอก 4 หมวดที่แยกป๊อปอัปกัน' },
+          accent: 'peach',
+        },
+        {
+          step: '02',
+          label: { en: 'Friction Found', th: 'พบจุดติดขัดหลัก' },
+          detail: { en: 'High interaction cost opening/closing modals', th: 'ต้องกดเปิด-ปิดหลายหน้าต่าง ซ้ำซ้อนและล้า' },
+          accent: 'butter',
+        },
+        {
+          step: '03',
+          label: { en: 'Unified Tab Pivot', th: 'รวมไว้ใน Tab เดียว' },
+          detail: { en: 'Merged all 4 logs in 1 horizontal Tab modal', th: 'ย้ายการกรอกทั้ง 4 หมวดมาไว้ในแถบ Tab เดียวกัน' },
+          accent: 'lilac',
+        },
+        {
+          step: '04',
+          label: { en: 'Live Netlify Build', th: 'พัฒนาและ Deploy จริง' },
+          detail: { en: 'Shipped HTML/JS + Chart.js dashboard', th: 'ขึ้นเว็บจริงพร้อมกราฟสรุปและทดสอบซ้ำ' },
+          accent: 'mint',
+        },
+      ],
+    },
     context: {
       en: 'Many users abandon daily health trackers when exercise, food, sleep, and water logs are fragmented across scattered pages and cluttered dashboards.',
       th: 'ผู้ใช้จำนวนมากเลิกติดตามสุขภาพเพราะข้อมูลการออกกำลังกาย อาหาร น้ำ และการนอนกระจัดกระจายอยู่หลายหน้าและกรอกข้อมูลซ้ำซ้อน',
@@ -995,15 +1176,46 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'Faculty of Information Technology, KMITL', th: 'คณะเทคโนโลยีสารสนเทศ สจล.' },
     period: '2024 – 2025',
     role: { en: 'UX/UI Product Designer', th: 'UX/UI Product Designer' },
+    platform: { en: 'Mobile App Prototype (Figma)', th: 'Mobile App Prototype (Figma)' },
+    team: { en: 'Student UX Design Project', th: 'โปรเจกต์ออกแบบ UX/UI คณะไอที สจล.' },
     summary: {
       en: 'Redesigned IT KMITL’s fragmented Google Forms & Calendar booking workflow into a centralized responsive prototype with real-time Creative & Common Room seat availability visualizers.',
-      th: 'ออกแบบระบบจองห้อง Creative Room และ Common Room คณะ IT สจล. ใหม่ทั้งหมด แก้ปัญหาเช็กที่นั่งว่างไม่ได้และจองซ้อนจาก Google Forms + Calendar พร้อม Figma Prototype คลิกเล่นได้จริง',
+      th: 'ออกแบบระบบจองห้อง Creative Room และ Common Room คณะ IT สจล. ใหม่ทั้งหมด แทนการสลับดู Google Calendar กับกรอก Google Forms เพื่อลดปัญหาจองซ้อนและเช็กที่นั่งว่างได้ทันที พร้อม Figma Prototype กดเล่นได้จริง',
     },
     shortSummary: {
       en: 'Interactive Figma prototype for IT KMITL room booking with real-time seat availability maps.',
-      th: 'ออกแบบระบบจองห้องคณะ IT สจล. ใหม่ พร้อมแผนผังเช็กที่นั่งว่างแบบเรียลไทม์บน Figma',
+      th: 'ออกแบบแอปจองห้องคณะ IT สจล. ใหม่ พร้อมแผนผังเช็กที่นั่งว่างแบบเรียลไทม์บน Figma',
     },
     tags: ['Figma Prototype', 'User Personas', 'Booking Flows', 'Seat Occupancy UI', 'Responsive Web'],
+    uxFlow: {
+      title: { en: 'Self-Service Room Booking UX Flow', th: 'เส้นทางผู้ใช้ในการจองและจัดการห้อง (UX Flow)' },
+      steps: [
+        {
+          step: '01',
+          label: { en: 'Explore Live Status', th: 'เช็กสถานะห้องว่าง' },
+          detail: { en: 'Filter date/time across all 5 rooms', th: 'กรองวัน-เวลา เห็นห้องว่าง/ไม่ว่างครบ 5 ห้อง' },
+          accent: 'sky',
+        },
+        {
+          step: '02',
+          label: { en: 'Room Detail & Map', th: 'ดูห้อง & ผังที่นั่ง' },
+          detail: { en: 'Inspect facilities & pick seat on floor plan', th: 'เช็กสิ่งอำนวยความสะดวกและเลือกที่นั่งบนแผนผัง' },
+          accent: 'butter',
+        },
+        {
+          step: '03',
+          label: { en: 'Confirm Booking', th: 'ยืนยันการจอง' },
+          detail: { en: 'Instant slot lock preventing double bookings', th: 'ล็อกช่วงเวลาทันที ป้องกันการจองซ้อน' },
+          accent: 'peach',
+        },
+        {
+          step: '04',
+          label: { en: 'Check-In / Cancel', th: 'เช็กอิน / ยกเลิกเอง' },
+          detail: { en: 'Manage Remaining & Past bookings in History', th: 'กด Check-In หรือยกเลิกเองได้ในหน้า History' },
+          accent: 'mint',
+        },
+      ],
+    },
     context: {
       en: 'Students at IT KMITL had to manually check Google Calendar before submitting a Google Form to book Creative or Common Room spaces, creating confusion and overlapping reservations.',
       th: 'นักศึกษาคณะ IT สจล. ต้องสลับดูตาราง Google Calendar และกรอก Google Forms เพื่อจองห้อง Creative/Common Room ทำให้เช็กที่นั่งว่างไม่ได้ เกิดการจองซ้อน และแก้ไข/ยกเลิกเองไม่ได้',
@@ -1119,6 +1331,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: '06016404 Cloud Computing (KMITL)', th: 'วิชา Cloud Computing (สจล.)' },
     period: '2024',
     role: { en: 'System Designer & Cloud Architect (Team)', th: 'ออกแบบระบบและสถาปัตยกรรมคลาวด์ (ทีม)' },
+    platform: { en: 'Web App (Django + AWS Multi-AZ)', th: 'เว็บแอป (Django + คลาวด์ AWS Multi-AZ)' },
+    team: { en: 'KMITL Cloud Computing Project Team', th: 'ทีมโปรเจกต์วิชา Cloud Computing (สจล.)' },
     summary: {
       en: 'Online vaccine record system built with Django, Bootstrap & PostgreSQL on a resilient AWS Multi-AZ architecture (VPC, ALB, EC2 Auto Scaling, Multi-DB RDS, NAT Gateway, Bastion Host & NACL).',
       th: 'ระบบสมุดบันทึกการฉีดวัคซีนออนไลน์พัฒนาด้วย Django, Bootstrap และ PostgreSQL บนสถาปัตยกรรม AWS Multi-AZ เต็มรูปแบบ (VPC, ALB, EC2 Auto Scaling, RDS Primary/Secondary, NAT Gateway, Bastion Host)',
@@ -1206,6 +1420,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'KMITL Multimedia & Game Development', th: 'สาขา Multimedia & Game Development (สจล.)' },
     period: '2023 – 2025',
     role: { en: '3D Artist & Animator', th: '3D Artist & Animator' },
+    platform: { en: '3D Pipeline (Blender, Maya, UE)', th: '3D Pipeline (Blender, Maya, Unreal Engine)' },
+    team: { en: 'Solo & KMITL Coursework Projects', th: 'ผลงานเดี่ยวและงานกลุ่มวิชา Multimedia (สจล.)' },
     summary: {
       en: 'Visually driven 3D modeling, character/camera animation, and real-time visualization portfolio crafted with Blender, Maya, Substance Painter, and Unreal Engine - featuring 2 YouTube showreels.',
       th: 'รวมผลงานปั้นโมเดล 3 มิติ (Hard Surface, Environment, Prop, Character), แอนิเมชัน และการจัดแสงเรนเดอร์ด้วย Blender, Maya, Substance Painter และ Unreal Engine พร้อมคลิป Showreel 2 ชุด',
@@ -1292,6 +1508,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'KMITL Senior Project 1 & 2 (Grade A)', th: 'โครงงานปริญญานิพนธ์ 1 & 2 (สจล. - เกรด A)' },
     period: '2025 – 2026',
     role: { en: 'Co-Developer, VR UX/UI & System Designer', th: 'ผู้พัฒนาเกม VR, ออกแบบ UX/UI และระบบ' },
+    platform: { en: 'VR (Unreal Engine 5 • Oculus Quest 2)', th: 'VR (Unreal Engine 5 • Oculus Quest 2)' },
+    team: { en: '2-Person Senior Project Team + 30 Testers', th: 'ทีมปริญญานิพนธ์ 2 คน + ผู้ทดสอบจริง 30 คน' },
     summary: {
       en: 'Interactive VR educational game in Unreal Engine 5 for Oculus Quest 2 teaching Thai wildlife conservation and camping skills across 3 stages & 10 missions - validated with 30 testers (+36.2% pre/post learning gain, 4.35/5 satisfaction).',
       th: 'เกม Virtual Reality บน Unreal Engine 5 สำหรับ Oculus Quest 2 เพื่อให้ความรู้ด้านการตั้งค่ายพักแรมและการอนุรักษ์สัตว์ป่าไทยผ่าน 3 ด่าน 10 ภารกิจ ทดสอบจริงกับกลุ่มตัวอย่าง 30 คน (คะแนนหลังเล่นเพิ่ม +36.20%, ความพึงพอใจ 4.35/5.00, Senior Project 2 เกรด A)',
@@ -1417,6 +1635,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'KMITL Game Development (Group 9: 5-Angies)', th: 'โปรเจกต์พัฒนาเกม สจล. (ทีม 5-Angies)' },
     period: '2024',
     role: { en: 'Level Designer & Unreal Blueprint Developer', th: 'ออกแบบด่าน & เขียน Blueprint (UE)' },
+    platform: { en: 'PC 3D Game (Unreal Engine)', th: 'เกม 3D บน PC (Unreal Engine)' },
+    team: { en: '5-Person Team (Group 9: 5-Angies)', th: 'ทีมพัฒนาเกม 5 คน (กลุ่ม 5-Angies)' },
     summary: {
       en: 'Playful single-player 3D PC platformer built with Unreal Engine, Blender & Maya where a little donut escapes a giant bakery - owned design & Blueprint physics for 3 signature obstacle stages.',
       th: 'เกม 3D Platformer บน PC พัฒนาด้วย Unreal Engine, Blender และ Maya สวมบทโดนัทหนีออกจากครัวเบเกอรี่ขนาดยักษ์ โดยรับผิดชอบออกแบบและเขียน Blueprint ฟิสิกส์หลัก 3 ด่าน',
@@ -1489,6 +1709,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: { en: 'Global Game Jam & Asset Jam 2025 (ANT x DPU Jamsite)', th: 'Global Game Jam & Asset Jam 2025 (ANT x DPU Jamsite)' },
     period: 'Jan 24–26, 2025',
     role: { en: '3D Art Team (#256fes Low-Poly Assets)', th: 'ทีม Art ปั้นโมเดล 3D (#256fes Low-Poly)' },
+    platform: { en: 'VR (Oculus Quest 3 • Unreal Engine)', th: 'VR (Oculus Quest 3 • Unreal Engine)' },
+    team: { en: '48-Hour Game Jam Multidisciplinary Team', th: 'ทีมแข่ง Game Jam 48 ชม. (Programmer + Art)' },
     summary: {
       en: 'Won 2nd Runner-Up & Popular Vote out of 24 teams (150 participants) at Global Game Jam & Asset Jam 2025 (ANT x DPU): fast-paced Oculus Quest 3 VR Action Shooter defending a bubble tea shop from cockroach waves using tapioca pearls under strict #256fes low-poly constraints.',
       th: 'คว้ารางวัลรองชนะเลิศอันดับที่ 2 และรางวัล Popular Vote จากผู้เข้าแข่งขัน 150 คน (24 ทีม) ในงาน Global Game Jam & Asset Jam 2025 (ANT x DPU) - เกม Action Shooter บน Oculus Quest 3 สวมบทเจ้าของร้านชานมไข่มุกใช้เม็ดไข่มุกยิงแมลงสาบปกป้องร้านทำคะแนนสูงสุดภายในเวลาที่กำหนด ภายใต้เกณฑ์ #256fes',

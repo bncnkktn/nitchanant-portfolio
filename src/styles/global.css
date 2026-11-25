@@ -5340,3 +5340,197 @@ html[lang='th'] .about-bell-heading {
     width: 100%;
   }
 }
+
+/* ====== RICH CASE STUDY METADATA GRID, VISUAL UX FLOW & CONTACT POLISH ====== */
+.modal-meta-grid.modal-meta-rich {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px 14px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.modal-meta-cell {
+  min-width: 0;
+}
+
+/* Visual UX Flow Strip Inside Modal */
+.ux-flow-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.ux-flow-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.ux-flow-head h4 {
+  margin: 0 !important;
+}
+
+.ux-flow-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--ink-muted);
+}
+
+html[lang='th'] .ux-flow-badge {
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.ux-flow-track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+
+.ux-flow-node-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ux-flow-node {
+  flex: 1;
+  height: 100%;
+  border-radius: 14px;
+  padding: 11px 12px;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ux-flow-node.accent-peach { border-top: 3px solid var(--mint); }
+.ux-flow-node.accent-butter { border-top: 3px solid var(--butter); }
+.ux-flow-node.accent-lilac { border-top: 3px solid var(--lilac); }
+.ux-flow-node.accent-sky { border-top: 3px solid var(--sky); }
+.ux-flow-node.accent-mint { border-top: 3px solid var(--fresh-mint); }
+
+.ux-flow-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--ink-muted);
+}
+
+.ux-flow-node strong {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+html[lang='th'] .ux-flow-node strong {
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.ux-flow-node p {
+  font-size: 0.74rem !important;
+  line-height: 1.45 !important;
+  color: var(--ink-secondary);
+  margin: 0 !important;
+}
+
+.ux-flow-arrow {
+  color: var(--ink-muted);
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Inline Mini Copy Email Pill & Back to Top Footer Button */
+.contact-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.contact-info-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-mini-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(35, 24, 25, 0.14);
+  color: #231819;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.contact-mini-copy:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+[data-theme='dark'] .contact-mini-copy {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 250, 246, 0.2);
+  color: #fffaf6;
+}
+
+.footer-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  transition: transform 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.footer-top-btn:hover {
+  color: var(--ink);
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 780px) {
+  .ux-flow-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ux-flow-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .ux-flow-track {
+    grid-template-columns: 1fr;
+  }
+}

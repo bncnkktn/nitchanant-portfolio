@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+  ArrowRight,
   BookOpen,
   ChevronDown,
   ExternalLink,
@@ -137,19 +138,31 @@ export function CaseStudyModal({ study, lang, onToggleLang, ndaMode, onClose }: 
           </button>
         </div>
 
-        <div className="modal-meta-grid">
-          <div>
+        <div className="modal-meta-grid modal-meta-rich">
+          <div className="modal-meta-cell">
             <div className="modal-meta-label">{UI_COPY.modal.role[lang]}</div>
             <div className="modal-meta-value">{study.role[lang]}</div>
           </div>
-          <div>
+          <div className="modal-meta-cell">
             <div className="modal-meta-label">{UI_COPY.modal.client[lang]}</div>
             <div className="modal-meta-value">{client}</div>
           </div>
-          <div>
+          <div className="modal-meta-cell">
             <div className="modal-meta-label">{UI_COPY.modal.period[lang]}</div>
             <div className="modal-meta-value">{study.period}</div>
           </div>
+          {study.platform && (
+            <div className="modal-meta-cell">
+              <div className="modal-meta-label">{UI_COPY.modal.platform[lang]}</div>
+              <div className="modal-meta-value">{study.platform[lang]}</div>
+            </div>
+          )}
+          {study.team && (
+            <div className="modal-meta-cell">
+              <div className="modal-meta-label">{UI_COPY.modal.team[lang]}</div>
+              <div className="modal-meta-value">{study.team[lang]}</div>
+            </div>
+          )}
         </div>
 
         {/* Direct Project Links (Live Demo, Figma Prototype, YouTube Showreel) */}
@@ -299,6 +312,31 @@ export function CaseStudyModal({ study, lang, onToggleLang, ndaMode, onClose }: 
             <h4>{lang === 'en' ? 'Overview' : 'สรุปภาพรวม'}</h4>
             <p>{summary}</p>
           </div>
+
+          {study.uxFlow && (
+            <div className="case-section ux-flow-box">
+              <div className="ux-flow-head">
+                <h4>{study.uxFlow.title[lang]}</h4>
+                <span className="ux-flow-badge">{UI_COPY.modal.uxFlow[lang]}</span>
+              </div>
+              <div className="ux-flow-track">
+                {study.uxFlow.steps.map((st, idx) => (
+                  <div key={st.step} className="ux-flow-node-wrap">
+                    <div className={`ux-flow-node accent-${st.accent ?? 'peach'}`}>
+                      <span className="ux-flow-step-num">{st.step}</span>
+                      <strong>{st.label[lang]}</strong>
+                      <p>{st.detail[lang]}</p>
+                    </div>
+                    {idx < study.uxFlow!.steps.length - 1 && (
+                      <span className="ux-flow-arrow" aria-hidden="true">
+                        <ArrowRight size={14} />
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {viewMode === 'full' && (
             <>
