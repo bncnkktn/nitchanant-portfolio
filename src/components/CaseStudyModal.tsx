@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+  ArrowLeft,
   ArrowRight,
   BookOpen,
+  Check,
   ChevronDown,
   ExternalLink,
   FileText,
   Globe,
+  Link2,
   Lock,
   Maximize2,
   Monitor,
@@ -18,17 +21,31 @@ import { useSlidingIndicator } from '../hooks/useSlidingIndicator';
 
 interface CaseStudyModalProps {
   study: CaseStudy | null;
+  prevStudy: CaseStudy | null;
+  nextStudy: CaseStudy | null;
+  onNavigate: (study: CaseStudy) => void;
   lang: Lang;
   onToggleLang: () => void;
   ndaMode: boolean;
   onClose: () => void;
 }
 
-export function CaseStudyModal({ study, lang, onToggleLang, ndaMode, onClose }: CaseStudyModalProps) {
+export function CaseStudyModal({
+  study,
+  prevStudy,
+  nextStudy,
+  onNavigate,
+  lang,
+  onToggleLang,
+  ndaMode,
+  onClose,
+}: CaseStudyModalProps) {
   const [activeShotIdx, setActiveShotIdx] = useState(0);
   const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
   const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary');
+  const [linkCopied, setLinkCopied] = useState(false);
   const contextRef = useRef<HTMLDivElement | null>(null);
+  const modalBodyRef = useRef<HTMLDivElement | null>(null);
 
   const viewSlider = useSlidingIndicator<HTMLDivElement>(viewMode, `${lang}-${study?.id ?? ''}`);
   const gallerySlider = useSlidingIndicator<HTMLDivElement>(activeShotIdx, `${lang}-${study?.id ?? ''}`);
@@ -42,10 +59,26 @@ export function CaseStudyModal({ study, lang, onToggleLang, ndaMode, onClose }: 
     });
   };
 
+  const handleCopyCaseLink = async () => {
+    if (!study) return;
+    const shareUrl = `${window.location.origin}${window.location.pathname}#case=${encodeURIComponent(study.id)}`;
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 1800);
+    } catch {
+      window.location.hash = `case=${encodeURIComponent(study.id)}`;
+    }
+  };
+
   useEffect(() => {
     setActiveShotIdx(0);
     setLightboxItem(null);
     setViewMode('summary');
+    setLinkCopied(false);
+    if (modalBodyRef.current) {
+      modalBodyRef.current.scrollTop = 0;
+    }
   }, [study?.id]);
 
   useEffect(() => {
@@ -94,6 +127,17 @@ export function CaseStudyModal({ study, lang, onToggleLang, ndaMode, onClose }: 
             <button
               type="button"
               className="pill-btn modal-lang-btn"
+              onClick={handleCopyCaseLink}
+              aria-label={lang === 'en' ? 'Copy direct link to this case study' : 'คัดลอกลิงก์ของโปรเจกต์นี้'}
+              title={lang === 'en' ? 'Copy direct link' : 'คัดลอกลิงก์โปรเจกต์นี้'}
+            >
+              {linkCopied ? <Check size={14} /> : <Link2 size={14} />}
+              <span>{linkCopied ? (lang === 'en' ? 'Copied' : 'คัดลอกแล้ว') : (lang === 'en' ? 'Share' : 'แชร์ลิงก์')}</span>
+            </button>
+
+            <button
+              type="button"
+              className="pill-btn modal-lang-btn"
               onClick={onToggleLang}
               aria-label={lang === 'en' ? 'Switch to Thai' : 'Switch to English'}
               title={lang === 'en' ? 'สลับเป็นภาษาไทย' : 'Switch to English'}
@@ -108,7 +152,7 @@ export function CaseStudyModal({ study, lang, onToggleLang, ndaMode, onClose }: 
           </div>
         </div>
 
-        <div className="modal-body">
+        <div className="modal-body" ref={modalBodyRef}>
         <div
           ref={viewSlider.containerRef}
           className="modal-view-bar has-slider"
@@ -404,6 +448,37 @@ export function CaseStudyModal({ study, lang, onToggleLang, ndaMode, onClose }: 
             </span>
           ))}
         </div>
+
+        {(prevStudy || nextStudy) && (
+          <div className="modal-nav-footer">
+            {prevStudy && (
+              <button
+                type="button"
+                className="modal-nav-btn is-prev"
+                onClick={() => onNavigate(prevStudy)}
+              >
+                <span className="modal-nav-dir">
+                  <ArrowLeft size={13} />
+                  <span>{lang === 'en' ? 'Previous Project' : 'โปรเจกต์ก่อนหน้า'}</span>
+                </span>
+                <strong>{ndaMode && prevStudy.titleNda ? prevStudy.titleNda[lang] : prevStudy.title[lang]}</strong>
+              </button>
+            )}
+            {nextStudy && (
+              <button
+                type="button"
+                className="modal-nav-btn is-next"
+                onClick={() => onNavigate(nextStudy)}
+              >
+                <span className="modal-nav-dir">
+                  <span>{lang === 'en' ? 'Next Project' : 'โปรเจกต์ถัดไป'}</span>
+                  <ArrowRight size={13} />
+                </span>
+                <strong>{ndaMode && nextStudy.titleNda ? nextStudy.titleNda[lang] : nextStudy.title[lang]}</strong>
+              </button>
+            )}
+          </div>
+        )}
         </div>
       </div>
 

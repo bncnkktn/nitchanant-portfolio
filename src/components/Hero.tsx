@@ -14,6 +14,7 @@ import { Lang } from '../data/portfolioData';
 import { Reveal } from './Reveal';
 import { useSlidingIndicator } from '../hooks/useSlidingIndicator';
 import { AboutBell } from './AboutBell';
+import { SmartVideo } from './SmartVideo';
 
 interface HeroProps {
   lang: Lang;
@@ -381,14 +382,11 @@ export function Hero({ lang, ndaMode, onQuickOpenCase }: HeroProps) {
                       </button>
                     </div>
                     <div className="browser-viewport video-viewport desktop-aspect">
-                      <video
+                      <SmartVideo
                         ref={desktopVidRef}
                         key={activeSlide.desktopVideo}
                         src={activeSlide.desktopVideo}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
+                        paused={!isPlaying}
                         className="stage-video stage-video-contain"
                       />
                     </div>
@@ -400,14 +398,11 @@ export function Hero({ lang, ndaMode, onQuickOpenCase }: HeroProps) {
                       <span>Mobile Live</span>
                     </div>
                     <div className="phone-viewport video-viewport">
-                      <video
+                      <SmartVideo
                         ref={mobileVidRef}
                         key={activeSlide.mobileVideo}
                         src={activeSlide.mobileVideo}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
+                        paused={!isPlaying}
                         className="stage-video stage-video-contain"
                       />
                     </div>

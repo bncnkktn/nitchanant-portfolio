@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, Copy, Download, ExternalLink, Mail, MapPin, Phone } from 'lucide-react';
+import { Check, Copy, Download, ExternalLink, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { Lang, PROFILE, UI_COPY } from '../data/portfolioData';
 import { Reveal } from './Reveal';
 
@@ -62,14 +62,24 @@ export function ContactSection({ lang }: ContactSectionProps) {
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              <button
-                type="button"
+              <a
+                href={`mailto:${PROFILE.email}`}
                 className="btn contact-btn-primary"
-                onClick={handleCopyEmail}
               >
-                {copied ? <Check size={16} /> : <Copy size={16} />}
-                <span>{copied ? UI_COPY.contact.copied[lang] : UI_COPY.contact.copyEmail[lang]}</span>
-              </button>
+                <Mail size={16} />
+                <span>{UI_COPY.contact.sendEmail[lang]}</span>
+              </a>
+
+              <a
+                href={PROFILE.linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn contact-btn-secondary"
+              >
+                <Linkedin size={15} />
+                <span>{UI_COPY.contact.openLinkedin[lang]}</span>
+                <ExternalLink size={13} />
+              </a>
 
               <a
                 href={PROFILE.notionUrl}
@@ -78,7 +88,7 @@ export function ContactSection({ lang }: ContactSectionProps) {
                 className="btn contact-btn-secondary"
               >
                 <span>{UI_COPY.contact.openNotion[lang]}</span>
-                <ExternalLink size={15} />
+                <ExternalLink size={14} />
               </a>
             </div>
           </div>

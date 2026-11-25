@@ -43,6 +43,7 @@ export function Navbar({
           </a>
 
           <div className="nav-links">
+            <a href="#about">{UI_COPY.nav.about[lang]}</a>
             <a href="#work">{UI_COPY.nav.work[lang]}</a>
             <a href="#skills">{UI_COPY.nav.skills[lang]}</a>
             <a href="#experience">{UI_COPY.nav.experience[lang]}</a>
@@ -156,6 +157,9 @@ export function Navbar({
       {mobileMenuOpen && (
         <div className="mobile-drawer">
           <div className="mobile-drawer-links">
+            <a href="#about" onClick={() => setMobileMenuOpen(false)}>
+              {UI_COPY.nav.about[lang]}
+            </a>
             <a href="#work" onClick={() => setMobileMenuOpen(false)}>
               {UI_COPY.nav.work[lang]}
             </a>

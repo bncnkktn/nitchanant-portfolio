@@ -1,4 +1,5 @@
 import React from 'react';
+import { SmartVideo } from './SmartVideo';
 
 interface ProjectVisualProps {
   id: string;
@@ -14,22 +15,14 @@ export function ProjectVisual({ id, badge, ndaMode = false }: ProjectVisualProps
         <span className="project-visual-badge">▶ {badge}</span>
         <div className="card-shot-pair">
           <div className="card-shot-main">
-            <video
+            <SmartVideo
               src="./media/shopify/theme-2a-desktop.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
               className="card-live-video"
             />
           </div>
           <div className="card-shot-side">
-            <video
+            <SmartVideo
               src="./media/shopify/theme-2a-mobile.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
               className="card-live-video"
             />
           </div>

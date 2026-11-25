@@ -73,6 +73,7 @@ export const PROFILE = {
   email: 'nitchanantkim@gmail.com',
   phone: '095-164-4297',
   location: { en: 'Pathum Thani, Thailand', th: 'ปทุมธานี, ประเทศไทย' },
+  linkedinUrl: 'https://www.linkedin.com/in/nitchanant-kimkethanom-26b409409/',
   notionUrl: 'https://app.notion.com/p/Nitchanant-Portfolio-99866e157756485c92715f85dd49e356',
   resumes: [
     {
@@ -107,6 +108,7 @@ export const PROFILE = {
 
 export const UI_COPY = {
   nav: {
+    about: { en: 'About', th: 'เกี่ยวกับฉัน' },
     work: { en: 'Case Studies', th: 'ผลงาน' },
     skills: { en: 'Skills', th: 'ทักษะ' },
     experience: { en: 'Experience', th: 'ประสบการณ์' },
@@ -211,12 +213,14 @@ export const UI_COPY = {
     kicker: { en: 'Get In Touch', th: 'ติดต่อ' },
     title: { en: "Let's work together.", th: 'สนใจร่วมงานหรือพูดคุยเพิ่มเติม' },
     desc: {
-      en: 'Open to full-time UX/UI Designer, Junior Product Designer, Frontend Developer, and QA roles. Download a tailored resume or copy my email below.',
-      th: 'เปิดรับงานประจำสาย UX/UI Designer, Junior Product Designer, Frontend และ QA ค่ะ สามารถดาวน์โหลดเรซูเม่แยกตามสายงาน หรือคัดลอกอีเมลด้านล่างได้เลย',
+      en: 'Open to full-time UX/UI Designer, Junior Product Designer, Frontend Developer, and QA roles. Download a tailored resume, connect on LinkedIn, or email me directly.',
+      th: 'เปิดรับงานประจำสาย UX/UI Designer, Junior Product Designer, Frontend และ QA ค่ะ สามารถดาวน์โหลดเรซูเม่แยกตามสายงาน ดู LinkedIn หรือส่งอีเมลติดต่อได้ทันที',
     },
+    sendEmail: { en: 'Send Email', th: 'ส่งอีเมลติดต่อ' },
     copyEmail: { en: 'Copy Email', th: 'คัดลอกอีเมล' },
     copied: { en: 'Copied!', th: 'คัดลอกแล้ว!' },
-    openNotion: { en: 'Open Notion Portfolio', th: 'เปิด Notion Portfolio' },
+    openLinkedin: { en: 'LinkedIn', th: 'LinkedIn' },
+    openNotion: { en: 'Notion Portfolio', th: 'Notion Portfolio' },
     resumesHeading: { en: 'Download Tailored Resumes (ATS PDF)', th: 'ดาวน์โหลดเรซูเม่แยกสายงาน (ATS PDF)' },
   },
 };
@@ -797,14 +801,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: { en: 'Moderated Usability Testing', th: 'Usability Testing' },
     metricBadge: { en: '1.5hr Think-Aloud Synthesis', th: 'ทดสอบ 1.5 ชม. • สังเคราะห์ 3 มิติ' },
     title: {
-      en: 'Moderated Usability Testing - Abbott [CR20] Bundle Subscription',
-      th: 'Moderated Usability Testing - ระบบสมัครสมาชิก Abbott [CR20]',
+      en: 'Moderated Usability Testing - Abbott Bundle Subscription',
+      th: 'Moderated Usability Testing - ระบบสมัครสมาชิก Abbott Bundle',
     },
     titleNda: {
       en: 'Moderated Usability Testing - Recurring Bundle Subscription Flow',
       th: 'Moderated Usability Testing - ระบบสมัครสมาชิกแบบ Bundle Subscription',
     },
-    client: { en: 'Abbott [CR20] (via aCommerce)', th: 'Abbott [CR20] (ผ่าน aCommerce)' },
+    client: { en: 'Abbott (via aCommerce)', th: 'Abbott (ผ่าน aCommerce)' },
     clientNda: { en: 'Global Healthcare Brand', th: 'แบรนด์ผลิตภัณฑ์สุขภาพระดับโลก' },
     period: 'Aug – Dec 2026',
     role: { en: 'Usability Test Moderator', th: 'ผู้ดำเนินการทดสอบผู้ใช้' },
@@ -1855,27 +1859,21 @@ export const SKILL_PILLARS = [
 
 export const TOOL_STACK = [
   { name: 'Figma', category: 'Design' },
-  { name: 'Shopify OS 2.0 / Liquid', category: 'E-Commerce' },
+  { name: 'Shopify OS 2.0', category: 'E-Commerce' },
   { name: 'Shopify Sidekick AI', category: 'E-Commerce' },
   { name: 'Matrixify', category: 'E-Commerce' },
   { name: 'Similarweb', category: 'Research' },
-  { name: 'React', category: 'Frontend' },
-  { name: 'TypeScript', category: 'Frontend' },
-  { name: 'HTML5 / CSS3 / JS', category: 'Frontend' },
-  { name: 'Vite', category: 'Frontend' },
-  { name: 'Bootstrap 5', category: 'Frontend' },
-  { name: 'Chart.js', category: 'Frontend' },
   { name: 'VS Code', category: 'Dev' },
   { name: 'Git & GitHub', category: 'Dev' },
+  { name: 'Vercel', category: 'Dev' },
   { name: 'Netlify', category: 'Dev' },
-  { name: 'PostgreSQL / SQL', category: 'Data' },
   { name: 'Google AppSheet', category: 'Apps' },
   { name: 'Google Sheets', category: 'Apps' },
   { name: 'AWS', category: 'Cloud' },
   { name: 'Blender', category: '3D' },
   { name: 'Autodesk Maya', category: '3D' },
   { name: 'Substance Painter', category: '3D' },
-  { name: 'Unreal Engine', category: '3D' },
+  { name: 'Unreal Engine 5', category: '3D / VR' },
   { name: 'Adobe Photoshop', category: 'Creative' },
   { name: 'Adobe Illustrator', category: 'Creative' },
   { name: 'Notion', category: 'Workflow' },
