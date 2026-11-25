@@ -213,8 +213,8 @@ export const UI_COPY = {
     kicker: { en: 'Get In Touch', th: 'ติดต่อ' },
     title: { en: "Let's work together.", th: 'สนใจร่วมงานหรือพูดคุยเพิ่มเติม' },
     desc: {
-      en: 'Open to full-time UX/UI Designer, Junior Product Designer, Frontend Developer, and QA roles. Download a tailored resume, connect on LinkedIn, or email me directly.',
-      th: 'เปิดรับงานประจำสาย UX/UI Designer, Junior Product Designer, Frontend และ QA ค่ะ สามารถดาวน์โหลดเรซูเม่แยกตามสายงาน ดู LinkedIn หรือส่งอีเมลติดต่อได้ทันที',
+      en: 'Open to full-time roles in UX/UI & Web Design, Frontend / Web Development, and QA / IT Software. Download a tailored resume, connect on LinkedIn, or email me directly.',
+      th: 'เปิดรับโอกาสงานประจำสาย UX/UI & Web Design, Frontend / Web Developer รวมถึงตำแหน่ง IT / Software & QA ค่ะ สามารถดาวน์โหลดเรซูเม่แยกตามสายงาน ดู LinkedIn หรือส่งอีเมลติดต่อได้ทันที',
     },
     sendEmail: { en: 'Send Email', th: 'ส่งอีเมลติดต่อ' },
     copyEmail: { en: 'Copy Email', th: 'คัดลอกอีเมล' },

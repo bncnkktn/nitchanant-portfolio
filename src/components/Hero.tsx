@@ -164,7 +164,7 @@ export function Hero({ lang, ndaMode, onQuickOpenCase }: HeroProps) {
           <div className="lately-top-bar">
             <div className="lately-status-pill">
               <span className="status-dot" />
-              <span>{lang === 'en' ? 'Open to full-time roles' : 'เปิดรับงานประจำ UX/UI · Frontend'}</span>
+              <span>{lang === 'en' ? 'Open to full-time roles' : 'เปิดรับงานประจำ · UX/UI, Web & IT'}</span>
             </div>
             <div className="lately-loc-meta">
               <MapPin size={12} />
