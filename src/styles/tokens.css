@@ -1,0 +1,96 @@
+:root {
+  --font-display: 'Bricolage Grotesque', 'Noto Sans Thai', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hand: 'Caveat', 'Noto Sans Thai', cursive;
+  --font-mono: 'JetBrains Mono', 'Noto Sans Thai', ui-monospace, monospace;
+
+  /* Crisp Cream-White + Rosy Peach Primary + Multi-Color Playful Accents */
+  --bg: #fffdf9;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #faf2ec;
+  --bg-glass: rgba(255, 253, 249, 0.88);
+
+  --ink: #231819;
+  --ink-secondary: #564244;
+  --ink-muted: #876f72;
+
+  --border: rgba(35, 24, 25, 0.1);
+  --border-strong: rgba(35, 24, 25, 0.2);
+
+  /* Primary Signature: Rosy Peach */
+  --mint: #ffa89b;
+  --mint-deep: #7a231c;
+  --mint-soft: #ffece8;
+
+  /* Multi-color Playful Companion Accents */
+  --butter: #ffe885;
+  --butter-deep: #6b4600;
+  --butter-soft: #fff9db;
+
+  --lilac: #dccbff;
+  --lilac-deep: #4c1d95;
+  --lilac-soft: #f5f0ff;
+
+  --peach: #b8e8ff;
+  --peach-deep: #075985;
+  --peach-soft: #eaf7ff;
+
+  --fresh-mint: #a8f2c8;
+  --fresh-mint-deep: #0b5d4b;
+  --fresh-mint-soft: #e9fdf2;
+
+  --sky: #b8e8ff;
+  --sky-deep: #075985;
+
+  --shadow-sm: 0 2px 8px rgba(35, 24, 25, 0.05);
+  --shadow-md: 0 14px 32px -12px rgba(35, 24, 25, 0.11);
+  --shadow-lg: 0 28px 60px -16px rgba(35, 24, 25, 0.18);
+
+  --radius-sm: 12px;
+  --radius-md: 22px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+
+  --container: 1140px;
+}
+
+[data-theme='dark'] {
+  --bg: #151011;
+  --bg-elevated: #201819;
+  --bg-subtle: #2c2123;
+  --bg-glass: rgba(21, 16, 17, 0.86);
+
+  --ink: #fffaf6;
+  --ink-secondary: #dac9cb;
+  --ink-muted: #a18b8e;
+
+  --border: rgba(255, 250, 246, 0.11);
+  --border-strong: rgba(255, 250, 246, 0.22);
+
+  --mint: #ff9c8e;
+  --mint-deep: #ffbdb3;
+  --mint-soft: rgba(255, 156, 142, 0.2);
+
+  --butter: #ffdc73;
+  --butter-deep: #ffe694;
+  --butter-soft: rgba(255, 220, 115, 0.19);
+
+  --lilac: #cab3ff;
+  --lilac-deep: #e2d4ff;
+  --lilac-soft: rgba(202, 179, 255, 0.2);
+
+  --peach: #8edaff;
+  --peach-deep: #b3e8ff;
+  --peach-soft: rgba(142, 218, 255, 0.19);
+
+  --fresh-mint: #7ce8ad;
+  --fresh-mint-deep: #a3f5c8;
+  --fresh-mint-soft: rgba(124, 232, 173, 0.19);
+
+  --sky: #8edaff;
+  --sky-deep: #b3e8ff;
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 18px 36px -12px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 32px 70px -16px rgba(0, 0, 0, 0.78);
+}
