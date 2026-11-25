@@ -5213,6 +5213,11 @@ html[lang='th'] .about-bell-heading {
 }
 
 /* ====== MOBILE CATEGORY FILTER DROPDOWN ====== */
+.work-header-reveal {
+  position: relative;
+  z-index: 35;
+}
+
 .mobile-filter-dropdown {
   display: none;
   position: relative;

@@ -60,7 +60,7 @@ export function WorkShowcase({
   return (
     <section id="work" className="section">
       <div className="container">
-        <Reveal>
+        <Reveal className="work-header-reveal">
           <div className="section-header" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
             <div>
               <div className="section-kicker">{UI_COPY.work.kicker[lang]}</div>
