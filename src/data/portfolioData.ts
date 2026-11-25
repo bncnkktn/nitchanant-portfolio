@@ -301,6 +301,28 @@ export const CASE_STUDIES: CaseStudy[] = [
         },
       },
       {
+        id: 'vid-2a-pdp-desktop',
+        src: './media/shopify/theme-2a-pdp-desktop.mp4',
+        mediaType: 'video',
+        label: { en: 'Theme 2A PDP (Desktop)', th: 'หน้าสินค้า 2A PDP (Desktop)' },
+        device: 'desktop',
+        caption: {
+          en: 'Live desktop recording of the Theme 2A Product Detail Page built with modular main-product-info.liquid Buy Box blocks and Theme-Native CSS inheritance.',
+          th: 'วิดีโอหน้าสินค้าจริง (PDP) ของ Theme 2A บน Desktop พัฒนาด้วย main-product-info.liquid Buy Box แบบโมดูลาร์และ Theme-Native CSS',
+        },
+      },
+      {
+        id: 'vid-2a-pdp-mobile',
+        src: './media/shopify/theme-2a-pdp-mobile.mp4',
+        mediaType: 'video',
+        label: { en: 'Theme 2A PDP (Mobile)', th: 'หน้าสินค้า 2A PDP (Mobile)' },
+        device: 'mobile',
+        caption: {
+          en: 'Mobile responsive walkthrough of the Theme 2A Product Detail Page showcasing touch-friendly variant selection, Buy Box layout, and product storytelling.',
+          th: 'วิดีโอหน้าสินค้า (PDP) ของ Theme 2A บนมือถือ แสดงการเลือกตัวเลือกสินค้า กล่อง Buy Box และข้อมูลรายละเอียดสินค้า',
+        },
+      },
+      {
         id: 'vid-3a-desktop',
         src: './media/shopify/theme-3a-desktop.mp4',
         mediaType: 'video',
