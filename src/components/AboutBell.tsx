@@ -121,9 +121,7 @@ export function AboutBell({ lang }: AboutBellProps) {
                   </>
                 ) : (
                   <>
-                    สวัสดีค่ะ!
-                    <br />
-                    เบลล์ <span>ณิชนันท์</span>
+                    ณิชนันท์ <span>กิมเกถนอม</span>
                   </>
                 )}
               </h2>
