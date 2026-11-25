@@ -1,4 +1,5 @@
-import { ArrowUpRight, RotateCcw } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowUpRight, Check, ChevronDown, RotateCcw, SlidersHorizontal } from 'lucide-react';
 import {
   CASE_STUDIES,
   CaseStudy,
@@ -29,9 +30,29 @@ export function WorkShowcase({
   onFilterChange,
   onSelectProject,
 }: WorkShowcaseProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileDropRef = useRef<HTMLDivElement>(null);
   const filterSlider = useSlidingIndicator<HTMLDivElement>(filter, lang);
   const getCount = (f: RoleFilter) =>
     f === 'all' ? CASE_STUDIES.length : CASE_STUDIES.filter((c) => c.group === f).length;
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (mobileDropRef.current && !mobileDropRef.current.contains(e.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    document.addEventListener('mousedown', onDocClick);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDocClick);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [mobileMenuOpen]);
 
   const visibleGroups = filter === 'all' ? GROUPS : [filter];
   const visibleTotal = getCount(filter);
@@ -48,9 +69,10 @@ export function WorkShowcase({
             </div>
 
             <div className="filter-row-wrap">
+              {/* Desktop: Single-row Sliding Pill Filter Bar */}
               <div
                 ref={filterSlider.containerRef}
-                className="filter-bar has-slider"
+                className="filter-bar has-slider desktop-filter-bar"
                 role="tablist"
                 aria-label="Filter projects by category"
               >
@@ -68,6 +90,51 @@ export function WorkShowcase({
                     <span className={`filter-count count-${f}`}>{getCount(f)}</span>
                   </button>
                 ))}
+              </div>
+
+              {/* Mobile: Clean Category Dropdown (No Horizontal Scrolling Needed) */}
+              <div className="mobile-filter-dropdown" ref={mobileDropRef}>
+                <button
+                  type="button"
+                  className={`mobile-filter-trigger ${mobileMenuOpen ? 'open' : ''}`}
+                  aria-expanded={mobileMenuOpen}
+                  aria-haspopup="listbox"
+                  onClick={() => setMobileMenuOpen((prev) => !prev)}
+                >
+                  <span className="mobile-filter-left">
+                    <SlidersHorizontal size={15} className="mobile-filter-icon" />
+                    <span className="mobile-filter-label">{UI_COPY.work.filters[filter][lang]}</span>
+                    <span className={`filter-count count-${filter}`}>{getCount(filter)}</span>
+                  </span>
+                  <ChevronDown size={17} className={`mobile-filter-chevron ${mobileMenuOpen ? 'rotated' : ''}`} />
+                </button>
+
+                {mobileMenuOpen && (
+                  <div className="mobile-filter-menu" role="listbox" aria-label="Filter projects by category">
+                    {FILTERS.map((f) => {
+                      const isActive = filter === f;
+                      return (
+                        <button
+                          key={f}
+                          type="button"
+                          role="option"
+                          aria-selected={isActive}
+                          className={`mobile-filter-option ${isActive ? 'active' : ''}`}
+                          onClick={() => {
+                            onFilterChange(f);
+                            setMobileMenuOpen(false);
+                          }}
+                        >
+                          <span className="mobile-filter-opt-main">
+                            <span>{UI_COPY.work.filters[f][lang]}</span>
+                            <span className={`filter-count count-${f}`}>{getCount(f)}</span>
+                          </span>
+                          {isActive && <Check size={15} className="mobile-filter-check" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
               {filter !== 'all' && (

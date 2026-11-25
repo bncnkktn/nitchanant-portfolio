@@ -5211,3 +5211,127 @@ html[lang='th'] .about-bell-heading {
     justify-content: center;
   }
 }
+
+/* ====== MOBILE CATEGORY FILTER DROPDOWN ====== */
+.mobile-filter-dropdown {
+  display: none;
+  position: relative;
+  width: 100%;
+}
+
+.mobile-filter-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border-strong);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.mobile-filter-trigger.open {
+  border-color: var(--ink);
+  box-shadow: var(--shadow-md);
+}
+
+.mobile-filter-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.mobile-filter-icon {
+  color: var(--ink-muted);
+  flex-shrink: 0;
+}
+
+.mobile-filter-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobile-filter-chevron {
+  color: var(--ink-muted);
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+}
+
+.mobile-filter-chevron.rotated {
+  transform: rotate(180deg);
+  color: var(--ink);
+}
+
+.mobile-filter-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 20px;
+  padding: 6px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-filter-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  text-align: left;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.mobile-filter-option:hover {
+  background: var(--bg-subtle);
+  color: var(--ink);
+}
+
+.mobile-filter-option.active {
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.mobile-filter-opt-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-filter-check {
+  flex-shrink: 0;
+}
+
+@media (max-width: 860px) {
+  .desktop-filter-bar {
+    display: none !important;
+  }
+
+  .mobile-filter-dropdown {
+    display: block;
+  }
+
+  .filter-row-wrap {
+    width: 100%;
+  }
+}
